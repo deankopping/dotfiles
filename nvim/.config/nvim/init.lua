@@ -171,6 +171,11 @@ vim.o.confirm = true
 -- Dean Kopping Custom.Keymaps
 vim.keymap.set('n', 'ee', '$', { desc = 'Jump to end of line' })
 vim.keymap.set('i', 'jj', '<Esc>')
+-- For moving text up and down
+vim.keymap.set('v', '<A-k>', ":m '<-2<CR>gv=gv", { desc = 'Move selection up' })
+vim.keymap.set('v', '<A-j>', ":m '>+1<CR>gv=gv", { desc = 'Move selection down' })
+vim.keymap.set('n', '<A-k>', ':m .-2<CR>==', { desc = 'Move line up' })
+vim.keymap.set('n', '<A-j>', ':m .+1<CR>==', { desc = 'Move line down' })
 
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
