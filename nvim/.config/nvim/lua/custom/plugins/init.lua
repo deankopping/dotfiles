@@ -1,6 +1,7 @@
 return { -- ~/.config/nvim/lua/custom/plugins/init.lua
   -- other plugins...
   { 'tpope/vim-fugitive' },
+  require 'custom.plugins.floaterminal',
   { 'rebelot/kanagawa.nvim' },
   require 'custom.plugins.minimap',
   require 'custom.plugins.oil',
