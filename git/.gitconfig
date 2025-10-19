@@ -1,0 +1,9 @@
+[push]
+	autoSetupRemote = true
+[user]
+	name = Dean Kopping
+	email = dean@teamgeek.io
+[http]
+	postBuffer = 524288000
+[core]
+    hooksPath = ~/.config/git/hooks
