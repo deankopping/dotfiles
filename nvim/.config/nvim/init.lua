@@ -177,6 +177,30 @@ vim.keymap.set('v', '<A-j>', ":m '>+1<CR>gv=gv", { desc = 'Move selection down' 
 vim.keymap.set('n', '<A-k>', ':m .-2<CR>==', { desc = 'Move line up' })
 vim.keymap.set('n', '<A-j>', ':m .+1<CR>==', { desc = 'Move line down' })
 
+vim.keymap.set('n', '<leader>d', function()
+  vim.diagnostic.open_float(nil, { scope = 'line', focusable = true })
+
+  vim.api.nvim_buf_set_keymap(0, 'n', '<Esc>', '<Cmd>close<CR>', { noremap = true, silent = true })
+end, { desc = 'Show line diagnostics (Esc to close)' })
+
+vim.keymap.set('n', '<leader>y', function()
+  local line = vim.api.nvim_win_get_cursor(0)[1] - 1
+  local diags = vim.diagnostic.get(0, { lnum = line })
+  if #diags > 0 then
+    -- concatenate all messages with a separator
+    local messages = table.concat(
+      vim.tbl_map(function(d)
+        return d.message
+      end, diags),
+      ' | '
+    )
+    -- copy to system clipboard
+    vim.fn.setreg('+', messages)
+  else
+    print 'No diagnostics on this line'
+  end
+end, { desc = 'Copy line diagnostics to system clipboard' })
+
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
