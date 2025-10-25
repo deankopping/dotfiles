@@ -1,9 +1,12 @@
 return {
-  { -- Add indentation guides even on blank lines
+  {
     'lukas-reineke/indent-blankline.nvim',
-    -- Enable `lukas-reineke/indent-blankline.nvim`
-    -- See `:help ibl`
     main = 'ibl',
-    opts = {},
+    opts = {
+      indent = {
+        char = '▏', -- thinner vertical line
+        tab_char = '▏',
+      },
+    },
   },
 }
