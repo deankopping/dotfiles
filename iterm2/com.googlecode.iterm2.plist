@@ -750,6 +750,32 @@
 			<key>Text</key>
 			<string></string>
 		</dict>
+		<key>0x68-0x40000-0x4</key>
+		<dict>
+			<key>Action</key>
+			<integer>31</integer>
+			<key>Apply Mode</key>
+			<integer>0</integer>
+			<key>Escaping</key>
+			<integer>2</integer>
+			<key>Text</key>
+			<string></string>
+			<key>Version</key>
+			<integer>2</integer>
+		</dict>
+		<key>0x6c-0x40000-0x25</key>
+		<dict>
+			<key>Action</key>
+			<integer>30</integer>
+			<key>Apply Mode</key>
+			<integer>0</integer>
+			<key>Escaping</key>
+			<integer>2</integer>
+			<key>Text</key>
+			<string></string>
+			<key>Version</key>
+			<integer>2</integer>
+		</dict>
 		<key>0xf700-0x300000</key>
 		<dict>
 			<key>Action</key>
