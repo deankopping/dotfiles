@@ -52,3 +52,11 @@ vim.keymap.set({ 'n', 'x' }, 'gP', '<Plug>(YankyGPutBefore)')
 
 vim.keymap.set('n', '<c-p>', '<Plug>(YankyPreviousEntry)')
 vim.keymap.set('n', '<c-n>', '<Plug>(YankyNextEntry)')
+
+-- Save with Ctrl-s
+vim.api.nvim_set_keymap('i', '<C-s>', '<C-o>:w<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<C-s>', ':w<CR>', { noremap = true, silent = true })
+
+-- Dont yank when using X
+vim.api.nvim_set_keymap('n', 'x', '"_x', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('v', 'x', '"_x', { noremap = true, silent = true })

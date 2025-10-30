@@ -1,5 +1,4 @@
-return { -- ~/.config/nvim/lua/custom/plugins/init.lua
-  -- other plugins...
+return {
   { 'tpope/vim-fugitive' },
   require 'custom.plugins.floaterminal',
   { 'rebelot/kanagawa.nvim' },
@@ -9,4 +8,5 @@ return { -- ~/.config/nvim/lua/custom/plugins/init.lua
   require 'custom.plugins.treesitter',
   require 'custom.plugins.typescript-tools',
   require 'custom.plugins.visual-multi',
+  require 'custom.plugins.yanky',
 }
