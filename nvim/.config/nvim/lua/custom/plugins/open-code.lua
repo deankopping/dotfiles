@@ -47,5 +47,22 @@ return {
 
     -- Alternative keymap for decrement (if <C-x> is used for opencode)
     vim.keymap.set('n', '_', '<C-x>', { desc = 'Decrement', noremap = true })
+
+    vim.keymap.set('n', '<leader>oo', function()
+      require('opencode').toggle()
+
+      vim.defer_fn(function()
+        for _, win in ipairs(vim.api.nvim_list_wins()) do
+          local buf = vim.api.nvim_win_get_buf(win)
+          local name = vim.api.nvim_buf_get_name(buf)
+          if name:match 'opencode' then
+            vim.api.nvim_set_current_win(win)
+            vim.cmd 'startinsert'
+            return
+          end
+        end
+      end, 100)
+    end, { desc = 'Open opencode and focus input' })
   end,
+  vim.keymap.set('t', '<leader><Esc>', '<C-\\><C-n><C-w>t', { desc = 'Exit opencode terminal and return to top-left window' }),
 }

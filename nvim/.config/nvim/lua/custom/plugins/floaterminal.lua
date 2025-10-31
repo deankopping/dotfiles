@@ -52,8 +52,6 @@ return {
         end
 
         vim.cmd 'startinsert'
-
-        vim.keymap.set('t', '<Esc>', '<C-\\><C-n>:hide<CR>', { buffer = state.floating.buf, noremap = true, silent = true, desc = 'Hide floating terminal' })
       else
         vim.api.nvim_win_hide(state.floating.win)
       end

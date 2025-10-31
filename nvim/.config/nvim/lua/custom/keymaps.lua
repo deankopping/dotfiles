@@ -1,5 +1,4 @@
-vim.keymap.set('n', 'ee', '$', { desc = 'Jump to end of line' })
-vim.keymap.set('v', 'ee', '$', { desc = 'Jump to end of line' })
+vim.keymap.set({ 'n', 'v' }, 'ee', '$', { desc = 'Jump to end of line' })
 vim.keymap.set('i', 'jj', '<Esc>')
 
 -- For moving text up and down
