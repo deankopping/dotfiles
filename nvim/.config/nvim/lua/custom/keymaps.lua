@@ -52,6 +52,9 @@ vim.keymap.set({ 'n', 'x' }, 'gP', '<Plug>(YankyGPutBefore)')
 vim.keymap.set('n', '<c-p>', '<Plug>(YankyPreviousEntry)')
 vim.keymap.set('n', '<c-n>', '<Plug>(YankyNextEntry)')
 
+vim.keymap.set('n', '<leader>p', '<Plug>(YankyPutAfterLinewise)', { desc = 'Linewise paste after' })
+vim.keymap.set('n', '<leader>P', '<Plug>(YankyPutBeforeLinewise)', { desc = 'Linewise paste before' })
+
 -- Save with Ctrl-s
 vim.api.nvim_set_keymap('i', '<C-s>', '<C-o>:w<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<C-s>', ':w<CR>', { noremap = true, silent = true })

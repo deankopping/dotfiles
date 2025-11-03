@@ -3,7 +3,6 @@ local config = wezterm.config_builder()
 config.window_decorations = "RESIZE"
 config.color_scheme = "Gruvbox Dark (Gogh)"
 config.window_padding = {
-	-- 	right = 0,
 	bottom = 0,
 	top = 0,
 }
