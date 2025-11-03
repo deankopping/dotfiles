@@ -3,11 +3,11 @@ local config = wezterm.config_builder()
 config.window_decorations = "RESIZE"
 config.color_scheme = "Gruvbox Dark (Gogh)"
 config.window_padding = {
-	left = 0,
-	right = 0,
-	top = 0,
+	-- 	right = 0,
 	bottom = 0,
+	top = 0,
 }
+config.font_size = 14
 config.use_fancy_tab_bar = true
 config.window_frame = {
 	font = wezterm.font({ family = "Roboto", weight = "DemiBold" }),
@@ -15,7 +15,6 @@ config.window_frame = {
 }
 config.colors = {
 	tab_bar = {
-		-- The color of the inactive tab bar edge/divider
 		inactive_tab_edge = "#575757",
 	},
 }
