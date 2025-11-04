@@ -584,7 +584,7 @@ require('lazy').setup({
       local servers = {
         -- clangd = {},
         -- gopls = {},
-        -- pyright = {},
+        -- pyright = {}
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
@@ -630,6 +630,7 @@ require('lazy').setup({
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format Lua code
+        'ruff', -- Used to format and lint Python code
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -683,13 +684,25 @@ require('lazy').setup({
       formatters_by_ft = {
         lua = { 'stylua' },
         -- Conform can also run multiple formatters sequentially
-        -- python = { "isort", "black" },
+        python = { 'ruff_organize_imports', 'ruff_format' },
         --
         -- You can use 'stop_after_first' to run the first available formatter from the list
         javascript = { 'prettierd', 'prettier', stop_after_first = true },
         typescript = { 'prettierd', 'prettier', stop_after_first = true },
         javascriptreact = { 'prettierd', 'prettier', stop_after_first = true },
         typescriptreact = { 'prettierd', 'prettier', stop_after_first = true },
+      },
+      formatters = {
+        ruff_organize_imports = {
+          command = 'ruff',
+          args = { 'check', '--select', 'I', '--fix', '--stdin-filename', '$FILENAME', '-' },
+          stdin = true,
+        },
+        ruff_format = {
+          command = 'ruff',
+          args = { 'format', '--stdin-filename', '$FILENAME', '-' },
+          stdin = true,
+        },
       },
     },
   },
