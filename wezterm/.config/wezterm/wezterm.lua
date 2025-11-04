@@ -19,6 +19,36 @@ config.colors = {
 }
 config.keys = {
 	{
+		key = "t",
+		mods = "ALT",
+		action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }),
+	},
+	{
+		key = "w",
+		mods = "ALT",
+		action = wezterm.action.CloseCurrentPane({ confirm = false }),
+	},
+	{
+		key = "LeftArrow",
+		mods = "ALT",
+		action = wezterm.action.ActivatePaneDirection("Left"),
+	},
+	{
+		key = "RightArrow",
+		mods = "ALT",
+		action = wezterm.action.ActivatePaneDirection("Right"),
+	},
+	{
+		key = "UpArrow",
+		mods = "ALT",
+		action = wezterm.action.ActivatePaneDirection("Up"),
+	},
+	{
+		key = "DownArrow",
+		mods = "ALT",
+		action = wezterm.action.ActivatePaneDirection("Down"),
+	},
+	{
 		key = "LeftArrow",
 		mods = "CMD",
 		action = wezterm.action.ActivateTabRelative(-1),
