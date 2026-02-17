@@ -45,3 +45,44 @@
 # # which is explained in the docs for that config option.
 # # Just for example:
 # resize-overlay-duration = 4s 200ms
+
+# Font
+font-size = 14
+
+# Tab switching with Cmd + arrows
+keybind = super+left=previous_tab
+keybind = super+right=next_tab
+
+# Move tabs with Option + arrows
+keybind = alt+left=move_tab:-1
+keybind = alt+right=move_tab:1
+
+# Focus between splits with Cmd + Ctrl + h/j/k/l (vim-style)
+keybind = super+ctrl+h=goto_split:left
+keybind = super+ctrl+j=goto_split:down
+keybind = super+ctrl+k=goto_split:up
+keybind = super+ctrl+l=goto_split:right
+
+# Kanagawa Dragon color scheme
+background = #181616
+foreground = #c5c9c5
+selection-background = #2d4f67
+selection-foreground = #c8c093
+cursor-color = #c5c9c5
+cursor-text = #181616
+palette = 0=#0d0c0c
+palette = 1=#c4746e
+palette = 2=#8a9a7b
+palette = 3=#c4b28a
+palette = 4=#8ba4b0
+palette = 5=#a292a3
+palette = 6=#8ea4a2
+palette = 7=#c8c093
+palette = 8=#a6a69c
+palette = 9=#e46876
+palette = 10=#87a987
+palette = 11=#e6c384
+palette = 12=#7fb4ca
+palette = 13=#938aa9
+palette = 14=#7aa89f
+palette = 15=#c5c9c5
