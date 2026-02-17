@@ -1,5 +1,5 @@
 return {
-  { 'tpope/vim-fugitive' },
+  require 'custom.plugins.vim-fugitive',
   require 'custom.plugins.floaterminal',
   { 'rebelot/kanagawa.nvim' },
   require 'custom.plugins.minimap',
@@ -9,4 +9,5 @@ return {
   require 'custom.plugins.typescript-tools',
   require 'custom.plugins.visual-multi',
   require 'custom.plugins.yanky',
+  require 'custom.plugins.vscode-diff',
 }

@@ -584,13 +584,34 @@ require('lazy').setup({
       local servers = {
         -- clangd = {},
         -- gopls = {},
-        -- pyright = {}
+        pyright = {
+          settings = {
+            python = {
+              venvPath = '.', -- the folder containing your venv
+              venv = '.venv', -- the name of the venv directory
+            },
+          },
+        },
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
         -- Some languages (like typescript) have entire language plugins that can be useful:
         --    https://github.com/pmizio/typescript-tools.nvim
 
+        svelte = {
+          on_attach = function(client, bufnr)
+            client.server_capabilities.documentFormattingProvider = false
+          end,
+          settings = {
+            svelte = {
+              plugin = {
+                svelte = { format = { enable = false } },
+                html = { format = { enable = false } },
+                css = { format = { enable = false } },
+              },
+            },
+          },
+        },
         eslint = {
           settings = {
             format = false,
@@ -631,6 +652,7 @@ require('lazy').setup({
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format Lua code
         'ruff', -- Used to format and lint Python code
+        'prettierd', -- Used to format JS/TS/Svelte/etc (faster than prettier)
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -671,7 +693,7 @@ require('lazy').setup({
         -- Disable "format_on_save lsp_fallback" for languages that don't
         -- have a well standardized coding style. You can add additional
         -- languages here or re-enable it for the disabled ones.
-        local disable_filetypes = { c = true, cpp = true }
+        local disable_filetypes = { c = true, cpp = true, python = true }
         if disable_filetypes[vim.bo[bufnr].filetype] then
           return nil
         else
@@ -691,6 +713,7 @@ require('lazy').setup({
         typescript = { 'prettierd', 'prettier', stop_after_first = true },
         javascriptreact = { 'prettierd', 'prettier', stop_after_first = true },
         typescriptreact = { 'prettierd', 'prettier', stop_after_first = true },
+        svelte = { 'prettier' },
       },
       formatters = {
         ruff_organize_imports = {
@@ -702,6 +725,13 @@ require('lazy').setup({
           command = 'ruff',
           args = { 'format', '--stdin-filename', '$FILENAME', '-' },
           stdin = true,
+        },
+        prettier = {
+          command = 'prettier',
+          args = { '--stdin-filepath', '$FILENAME' },
+        },
+        prettierd = {
+          command = 'prettierd', -- will automatically pick up global plugin
         },
       },
     },

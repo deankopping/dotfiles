@@ -62,3 +62,6 @@ vim.api.nvim_set_keymap('n', '<C-s>', ':w<CR>', { noremap = true, silent = true 
 -- Dont yank when using X
 vim.api.nvim_set_keymap('n', 'x', '"_x', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('v', 'x', '"_x', { noremap = true, silent = true })
+
+-- CodeDiff
+vim.keymap.set('n', '<leader>cd', ':CodeDiff<CR>', { desc = 'CodeDiff' })
