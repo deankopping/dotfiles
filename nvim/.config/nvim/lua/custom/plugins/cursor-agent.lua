@@ -69,44 +69,6 @@ return {
     -- toggle agent
     vim.keymap.set('n', '<leader>a', ':CursorAgent<CR>', { desc = 'Cursor Agent: Toggle' })
 
-    -- file reference (actual path)
-    vim.keymap.set('n', '<leader>A', function()
-      local file = current_file_path()
-      open_agent_with('@' .. file .. ' ')
-    end, { desc = 'Cursor Agent: Ask about file' })
-
-    -- Get visual selection from a specific buffer (uses that buffer's '< and '> marks).
-    -- nvim_buf_get_mark uses 1-based line, 0-based column; get_lines uses 0-based end-exclusive.
-    local function get_visual_selection_from_buf(bufnr)
-      local start_pos = vim.api.nvim_buf_get_mark(bufnr, '<')
-      local end_pos = vim.api.nvim_buf_get_mark(bufnr, '>')
-      if not start_pos or not end_pos then
-        return ''
-      end
-      local start_row, start_col = start_pos[1], start_pos[2] -- 1-based line, 0-based col
-      local end_row, end_col = end_pos[1], end_pos[2]
-      local r1 = math.min(start_row, end_row)
-      local r2 = math.max(start_row, end_row)
-      local c1 = math.min(start_col, end_col)
-      local c2 = math.max(start_col, end_col)
-      if vim.opt.selection:get() == 'exclusive' and c2 > 0 then
-        c2 = c2 - 1
-      end
-      local lines = vim.api.nvim_buf_get_lines(bufnr, r1 - 1, r2, false)
-      if not lines or #lines == 0 then
-        return ''
-      end
-      -- string.sub is 1-based; columns from API are 0-based
-      local c1_1, c2_1 = c1 + 1, c2 + 1
-      if r1 == r2 then
-        lines[1] = string.sub(lines[1], c1_1, c2_1)
-      else
-        lines[1] = string.sub(lines[1], c1_1)
-        lines[#lines] = string.sub(lines[#lines], 1, c2_1)
-      end
-      return table.concat(lines, '\n')
-    end
-
     -- selection: send to persistent terminal (one session).
     vim.keymap.set('v', '<leader>a', function()
       local bufnr = vim.api.nvim_get_current_buf()
@@ -120,6 +82,21 @@ return {
         send_to_persistent_terminal(sel)
       end)
     end, { desc = 'Cursor Agent: Ask selection' })
+
+    -- same as leader a in visual, but send file path instead of selection
+    vim.keymap.set('n', '<leader>A', function()
+      local bufnr = vim.api.nvim_get_current_buf()
+      vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Esc>', true, false, true), 'x', false)
+      vim.schedule(function()
+        local path = vim.api.nvim_buf_get_name(bufnr)
+        if path == '' then
+          vim.notify('Buffer has no file path', vim.log.levels.WARN, { title = 'cursor-agent' })
+          return
+        end
+        local file = vim.fn.fnamemodify(path, ':.')
+        send_to_persistent_terminal('@' .. file)
+      end)
+    end, { desc = 'Cursor Agent: Ask about file (path)' })
 
     -- selection + what does this do (send to persistent terminal)
     vim.keymap.set('v', '<leader>e', function()
