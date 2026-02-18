@@ -10,4 +10,5 @@ return {
   require 'custom.plugins.visual-multi',
   require 'custom.plugins.yanky',
   require 'custom.plugins.vscode-diff',
+  require 'custom.plugins.cursor-agent',
 }

@@ -65,3 +65,6 @@ vim.api.nvim_set_keymap('v', 'x', '"_x', { noremap = true, silent = true })
 
 -- CodeDiff
 vim.keymap.set('n', '<leader>cd', ':CodeDiff<CR>', { desc = 'CodeDiff' })
+
+-- fast escape from terminal mode
+vim.keymap.set('t', '<Esc>', [[<C-\><C-n><cmd>close<CR>]], { silent = true })
