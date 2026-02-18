@@ -45,10 +45,11 @@
 # # which is explained in the docs for that config option.
 # # Just for example:
 # resize-overlay-duration = 4s 200ms
-
 # Font
 font-size = 14
 
+macos-option-as-alt = true
+macos-titlebar-style = tabs
 # Tab switching with Cmd + arrows
 keybind = super+left=previous_tab
 keybind = super+right=next_tab
