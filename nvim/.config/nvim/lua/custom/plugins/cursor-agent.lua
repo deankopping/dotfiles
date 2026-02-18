@@ -2,16 +2,23 @@ return {
   'xTacobaco/cursor-agent.nvim',
 
   config = function()
-    -- current file relative to cwd (what Cursor Agent expects)
-    local function current_file_path()
-      local path = vim.api.nvim_buf_get_name(0)
-      if path == '' then
+    local agent = require 'cursor-agent'
+
+    -- Get text of the last visual selection in buffer (uses '< and '> marks).
+    local function get_visual_selection_from_buf(bufnr)
+      local start_pos = vim.fn.getpos "'<"
+      local end_pos = vim.fn.getpos "'>"
+      if not start_pos or not end_pos or start_pos[2] == 0 or end_pos[2] == 0 then
         return ''
       end
-      return vim.fn.fnamemodify(path, ':.')
+      local start_row, start_col = start_pos[2] - 1, start_pos[3] - 1
+      local end_row, end_col = end_pos[2] - 1, end_pos[3]
+      local ok, lines = pcall(vim.api.nvim_buf_get_text, bufnr, start_row, start_col, end_row, end_col, {})
+      if not ok or not lines then
+        return ''
+      end
+      return table.concat(lines, '\n')
     end
-
-    local agent = require 'cursor-agent'
 
     -- Open agent with prompt (used for file ref and one-off asks). For very
     -- long text we use a temp file to avoid ARG_MAX.
