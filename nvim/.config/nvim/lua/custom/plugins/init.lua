@@ -11,4 +11,5 @@ return {
   require 'custom.plugins.yanky',
   require 'custom.plugins.vscode-diff',
   require 'custom.plugins.cursor-agent',
+  require 'custom.plugins.nvim-ts-autotag',
 }

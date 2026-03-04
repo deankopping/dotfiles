@@ -709,6 +709,7 @@ require('lazy').setup({
         python = { 'ruff_organize_imports', 'ruff_format' },
         --
         -- You can use 'stop_after_first' to run the first available formatter from the list
+        json = { 'prettierd', 'prettier', stop_after_first = true },
         javascript = { 'prettierd', 'prettier', stop_after_first = true },
         typescript = { 'prettierd', 'prettier', stop_after_first = true },
         javascriptreact = { 'prettierd', 'prettier', stop_after_first = true },
